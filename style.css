@@ -12,35 +12,28 @@ html {
 body {
   font-family: system-ui;
   color: #555;
-  /* background-color: #f7f7f7; */
+
   background: #9213;
   min-height: 100vh;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
   position: relative;
 }
-.county{
+.county {
   position: absolute;
-  display: block;
-  top:10% ;
+  top: 10%;
   left: 50%;
-  transform: translate(-50%,0);
+
+  transform: translate(-50%, 0);
 
   display: flex;
   justify-content: space-between;
 
   width: 400px;
-
 }
-/* .inp_country{
-  top: 10%;
-}
-.inp_neighbour{
-  top: 10%;
-  left: 70%;
-} */
 
 .container {
   display: flex;
@@ -49,7 +42,6 @@ body {
 }
 
 .countries {
-  /* margin-bottom: 8rem; */
   display: flex;
 
   font-size: 2rem;
@@ -61,18 +53,14 @@ body {
   background-color: #fff;
   box-shadow: 2rem 2rem 2rem 1rem rgba(0, 0, 0, 0.2);
   font-size: 1.8rem;
+
   width: 30rem;
   border-radius: 0.7rem;
   margin: 0 3rem;
-
-  /* box-shadow: 2px 3px 4px #000; */
-
-
-  /* overflow: hidden; */
 }
 
 .neighbour::before {
-  content: 'Neighbour country';
+  content: "Neighbour country";
   width: 100%;
   position: absolute;
   top: -4rem;
@@ -80,6 +68,7 @@ body {
   text-align: center;
   font-size: 1.8rem;
   font-weight: 600;
+
   text-transform: uppercase;
   color: #888;
 }
@@ -93,6 +82,7 @@ body {
   width: 30rem;
   height: 17rem;
   object-fit: cover;
+
   background-color: #eee;
   border-top-left-radius: 0.7rem;
   border-top-right-radius: 0.7rem;
@@ -111,6 +101,7 @@ body {
   font-size: 1.4rem;
   margin-bottom: 2.5rem;
   text-transform: uppercase;
+
   color: #888;
 }
 
@@ -128,9 +119,11 @@ body {
   border: none;
   font-size: 2rem;
   padding: 2rem 5rem;
+
   border-radius: 0.7rem;
   color: white;
   background-color: orangered;
+
   cursor: pointer;
 }
 
