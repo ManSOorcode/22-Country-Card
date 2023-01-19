@@ -34,6 +34,7 @@ function getCountryDataPro (country,  neighbourCountryNum){
 
   // if(country == 'india') value = 1
   // else value = 0
+  
   const value = country == 'india' ? 1: 0;
   fetch(`https://restcountries.com/v2/name/${country}`).then(function(response){
   //  console.log( response.json());
@@ -64,5 +65,3 @@ btn.addEventListener('click', ()=>{
 })
 
 
-// console.log(getCountryDataPro('india',0));
-// console.log(getCountryDataPro(inpCounrty.value, inpNeig.value));
