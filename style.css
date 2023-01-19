@@ -67,6 +67,7 @@ body {
 
   text-align: center;
   font-size: 1.8rem;
+
   font-weight: 600;
 
   text-transform: uppercase;
@@ -81,9 +82,11 @@ body {
 .country__img {
   width: 30rem;
   height: 17rem;
+
   object-fit: cover;
 
   background-color: #eee;
+
   border-top-left-radius: 0.7rem;
   border-top-right-radius: 0.7rem;
 }
@@ -100,6 +103,7 @@ body {
 .country__region {
   font-size: 1.4rem;
   margin-bottom: 2.5rem;
+
   text-transform: uppercase;
 
   color: #888;
@@ -118,9 +122,11 @@ body {
 .btn-country {
   border: none;
   font-size: 2rem;
+
   padding: 2rem 5rem;
 
   border-radius: 0.7rem;
+
   color: white;
   background-color: orangered;
 
