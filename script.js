@@ -7,55 +7,48 @@ const inpCounrty = document.querySelector(".inp_country");
 const inpCounrtyValue = document.querySelector(".inp_country_value");
 const inpNeig = document.querySelector(".inp_neighbour");
 
-function renderCountry(data, data2, className = "") {
-  const html1 = `
-                  <article class="country">
-                      <img class="country__img" src="${data.flag}" />
+const countryCard = (countryData, borderCountryStyle = "") => {
+  const cardStructure = `
+                  <article class=${
+                    borderCountryStyle ? borderCountryStyle : "country"
+                  }>
+                      <img class="country__img" src="${countryData.flag}" />
                       <div class="country__data">
-                        <h3 class="country__name">${data.name}</h3>
-                        <h4 class="country__region">REGION ${data.region}</h4>
+                        <h3 class="country__name">${countryData.name}</h3>
+                        <h4 class="country__region">REGION ${
+                          countryData.region
+                        }</h4>
                         <p class="country__row"><span>👫</span>${(
-                          +data.population / 1000000
+                          +countryData.population / 1000000
                         ).toFixed(2)} people</p>
                         <p class="country__row"><span>🗣️</span>${
-                          data.languages[0].name
+                          countryData.languages[0].name
                         }</p>
                         <p class="country__row"><span>💰</span>${
-                          data.currencies[0].name
-                        } <span> ${data.currencies[0].symbol}</span></p>
+                          countryData.currencies[0].name
+                        } <span> ${countryData.currencies[0].symbol}</span></p>
                       </div>
                   </article>          
     `;
 
-  const html2 = ` <article class="${className}">
-                      <img class="country__img" src="${data2?.flag}" />
-                      <div class="country__data">
-                        <h3 class="country__name">${data2?.name}</h3>
-                        <h4 class="country__region">REGION ${data2?.region}</h4>
-                        <p class="country__row"><span>👫</span>${(
-                          +data2?.population / 1000000
-                        ).toFixed(2)} people</p>
-                        <p class="country__row"><span>🗣️</span>${
-                          data2?.languages[0]?.name
-                        }</p>
-                        <p class="country__row"><span>💰</span>${
-                          data2?.currencies[0]?.name
-                        } <span> ${data2?.currencies[0].symbol}</span></p>
-                      </div>
-                  </article> `;
+  return cardStructure;
+};
 
-  const findEle = html2.split(" ").some((el) => el.includes("undefined"));
-
+function renderCountry(data, data2, className = "") {
   const countriesContainer = document.createElement("div");
   countriesContainer.setAttribute("class", "countries");
 
-  if (!findEle) {
-    countriesContainer.insertAdjacentHTML("beforeend", html1);
-    countriesContainer.insertAdjacentHTML("beforeend", html2);
+  if (data2) {
+    countriesContainer.insertAdjacentHTML("beforeend", countryCard(data));
+    countriesContainer.insertAdjacentHTML(
+      "beforeend",
+      countryCard(data2, className)
+    );
   } else {
-    countriesContainer.insertAdjacentHTML("beforeend", html1);
+    countriesContainer.insertAdjacentHTML("beforeend", countryCard(data));
   }
 
+  // console.log(countriesContainer);
   newContainer.append(countriesContainer);
 
   countriesContainer.style.opacity = 1;
@@ -69,17 +62,8 @@ async function getCountryDataPro(country, neighbourCountryNum) {
   const response = await fetch(`https://restcountries.com/v2/name/${country}`);
   const data = await response.json();
 
-  console.log(data);
-  if (
-    data[value].borders === undefined ||
-    data[value].borders[neighbourCountryNum] === undefined
-  ) {
-    console.log("doest not have neighbour");
-    renderCountry(data[value]);
-  }
-
   if (!neighbourCountryNum) {
-    return renderCountry(data[value]);
+    renderCountry(data[value], "");
   } else {
     const neighbour = data[value].borders[neighbourCountryNum];
 
@@ -89,7 +73,7 @@ async function getCountryDataPro(country, neighbourCountryNum) {
     );
     const dataNeigbhour = await responseNeigbhour.json();
 
-    return renderCountry(data[value], dataNeigbhour, "country neighbour");
+    renderCountry(data[value], dataNeigbhour, "country neighbour");
   }
 }
 
